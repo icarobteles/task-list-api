@@ -4,6 +4,8 @@
     "settings.json",
     "database",
     "routes",
-    "index.js"
+    "index.js",
+    "models",
+    "controllers"
   ]
 }
