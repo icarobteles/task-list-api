@@ -1,0 +1,20 @@
+{
+  "name": "task-list-api",
+  "version": "1.0.0",
+  "description": "An API with JWT Authentication system and a simple CRUD for a to-do list",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icarobteles/task-list-api.git"
+  },
+  "author": "Ícaro Teles <eng.icaroteles@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icarobteles/task-list-api/issues"
+  },
+  "homepage": "https://github.com/icarobteles/task-list-api#readme"
+}
