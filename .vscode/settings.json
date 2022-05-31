@@ -6,6 +6,7 @@
     "routes",
     "index.js",
     "models",
-    "controllers"
+    "controllers",
+    "middlewares"
   ]
 }

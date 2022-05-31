@@ -82,7 +82,9 @@ export const login = async (req, res) => {
     return res.status(422).json({ error: "Password is required" });
   }
 
-  const user = await UserModel.findOne({ email: email }).select("+password");
+  const user = await UserModel.findOne({ email: email })
+    .select("+password")
+    .populate("tasks");
   if (!user) {
     return res.status(404).json({ error: "User does not exist" });
   }
