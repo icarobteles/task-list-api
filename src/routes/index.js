@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-//Import Routers
+//Import the Routers
 import { authRouter } from "./auth/auth.js";
 import { userRouter } from "./user/user.js";
 import { taskRouter } from "./task/task.js";
