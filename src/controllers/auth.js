@@ -57,8 +57,15 @@ export const register = async (req, res) => {
     return res.status(422).json({ error: "Passwords do not match" });
   }
 
+  const possibleKeys = ["name", "email", "password", "passwordConfirmation"];
+  Object.keys(req.body).forEach((key) => {
+    if (!possibleKeys.includes(key)) {
+      return res.status(422).json({ error: "Some unnecessary data was sent" });
+    }
+  });
+
   //Check if email has already been registered
-  const userExists = await UserModel.findOneAndDelete({ email: email });
+  const userExists = await UserModel.findOne({ email: email });
   if (userExists) {
     return res.status(422).json({ error: "Email already registered" });
   }
@@ -93,6 +100,13 @@ export const login = async (req, res) => {
   if (!checkPassword) {
     return res.status(403).json({ error: "Password is invalid" });
   }
+
+  const possibleKeys = ["email", "password"];
+  Object.keys(req.body).forEach((key) => {
+    if (!possibleKeys.includes(key)) {
+      return res.status(422).json({ error: "Some unnecessary data was sent" });
+    }
+  });
 
   try {
     user.password = undefined;
