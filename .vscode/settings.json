@@ -1,3 +1,13 @@
 {
-  "conventionalCommits.scopes": [".gitignore", "settings.json"]
+  "conventionalCommits.scopes": [
+    ".gitignore",
+    "settings.json",
+    "database",
+    "routes",
+    "index.js",
+    "models",
+    "controllers",
+    "middlewares",
+    "utils"
+  ]
 }
