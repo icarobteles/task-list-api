@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
 import UserModel from "../models/Auth.js";
+import { validationPassword } from "../utils/validations/password.js";
 
 const generateToken = (params = {}) => {
   const secret = process.env.SECRET;
@@ -25,34 +26,14 @@ export const register = async (req, res) => {
   if (!/\S+@\S+\.\S+/.test(email)) {
     return res.status(422).json({ error: "Email is invalid" });
   }
-  if (!password) {
-    return res.status(422).json({ error: "Password is required" });
-  }
-  if (!/(?=.*[A-Z])/.test(password)) {
-    return res.status(422).json({
-      error: "Password must be at least one capital letter",
-    });
-  }
-  if (!/^(?=.*[a-z])/.test(password)) {
-    return res.status(422).json({
-      error: "Password must be at least one lowercase letter",
-    });
-  }
-  if (!/(?=.*[0-9])/.test(password)) {
-    return res.status(422).json({
-      error: "Password must have at least one number",
-    });
-  }
-  if (!/(?=.*[!@#\$%\^&\*])/.test(password)) {
-    return res.status(422).json({
-      error: "Password must have at least one special character",
-    });
-  }
-  if (password.length < 8) {
+
+  const validationPasswordFailed = validationPassword(password);
+  if (validationPasswordFailed) {
     return res
-      .status(411)
-      .json({ error: "Password is too short, minimum is 8 characters" });
+      .status(validationPasswordFailed.status)
+      .json({ error: validationPasswordFailed.error });
   }
+
   if (password !== passwordConfirmation) {
     return res.status(422).json({ error: "Passwords do not match" });
   }
