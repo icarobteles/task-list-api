@@ -1,6 +1,7 @@
 # TASK LIST API
 
 > Projeto Concluído  
+> Documentação em Desenvolvimento  
 
 ## Descrição  
 
